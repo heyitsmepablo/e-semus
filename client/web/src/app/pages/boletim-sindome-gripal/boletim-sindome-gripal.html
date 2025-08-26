@@ -372,37 +372,36 @@
               </div>
             </ng-template>
           </p-dialog>
-          @if(boletins){
-          <p-table [value]="boletins" size="large" class="hidden lg:flex" d>
-            <ng-template #header>
-              <tr>
-                <th>Nome</th>
-                <th>Enviado Por</th>
-                <th>Data de Envio</th>
-              </tr>
-            </ng-template>
-            <ng-template #body let-boletim>
-              <tr [routerLink]="['/boletim/sindrome-gripal',boletim.id]">
-                <td>Boletim {{boletim.referente_ao_dia|date:'shortDate'}}</td>
-                <td class="flex gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    class="size-6"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  {{boletim.usuario.nome}}
-                </td>
-                <td>{{boletim.criado_em|date}}</td>
-              </tr>
-            </ng-template>
-          </p-table>
+          @if(true){
+          <table>
+            <tr class="gap-x-4 flex p-5 shadow rounded-md">
+              <span class="flex gap-x-10">
+                <div>
+                  <p class="card-info-text">ID</p>
+                  <p>1</p>
+                </div>
+                <div class="flex items-center">
+                  <p>Boletim SG001</p>
+                </div>
+                <div>
+                  <p class="card-info-text">Enviado Por</p>
+                  <p>Pablo Eduardo</p>
+                </div>
+                <div>
+                  <p class="card-info-text">Status</p>
+                  <p>Enviado</p>
+                </div>
+                <div>
+                  <p class="card-info-text">Janela de Edição</p>
+                  <p>Encerrado</p>
+                </div>
+                <div>
+                  <p class="card-info-text">Data de Envio</p>
+                  <p>01/01/25</p>
+                </div>
+              </span>
+            </tr>
+          </table>
 
           } @else {
           <p>Não encontrado nenhuma ficha cadastrada</p>

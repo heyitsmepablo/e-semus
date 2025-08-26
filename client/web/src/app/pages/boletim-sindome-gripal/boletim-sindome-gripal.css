@@ -93,3 +93,7 @@
     @apply rounded-md border w-80 h-12;
   }
 }
+
+.card-info-text {
+  @apply text-sm text-gray-500;
+}
