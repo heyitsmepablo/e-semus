@@ -49,9 +49,51 @@ OPTIONS (
 );
 
 -- COPIANDO DADOS PARA TABELA NO BANCO
-INSERT INTO unidade (nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,unidade_tipo_id,setor)
-SELECT * FROM unidades_csv;
+-- 1️⃣ Inserir na tabela unidade
+INSERT INTO unidade (
+    nome,
+    sigla,
+    endereco,
+    cnes,
+    cnpj,
+    email_principal,
+    email_alternativo,
+    unidade_tipo_id,
+    setor
+)
+SELECT
+    nome,
+    sigla,
+    endereco,
+    cnes,
+    cnpj,
+    email_principal,
+    email_alternativo,
+    unidade_tipo_id,
+    setor
+FROM unidades_csv;
 
+-- 2️⃣ Inserir na unidade_hospitalar apenas onde unidade_tipo_id <> 13
+INSERT INTO unidade_hospitalar (
+    unidade_id,
+    numero_leitos_uti,
+    numero_leitos_uci,
+    numero_leitos_enfermaria,
+    numero_leitos_suporte_ventilatorio_pulmonar,
+    numero_leitos_existente_total,
+    numero_leitos_cnes_total
+)
+SELECT
+    u.id,
+    c.numero_leitos_uti,
+    c.numero_leitos_uci,
+    c.numero_leitos_enfermaria,
+    c.numero_leitos_suporte_ventilatorio_pulmonar,
+    c.numero_leitos_cnes_total,       -- existente_total (usa mesmo valor do CSV)
+    c.numero_leitos_cnes_total
+FROM unidades_csv c
+JOIN unidade u ON u.nome = c.nome      -- vincula pelo nome
+WHERE c.unidade_tipo_id <> 13;
 -------------------------------------------------
 
 -- CRIANDO TABELA ESTRANGEIRA

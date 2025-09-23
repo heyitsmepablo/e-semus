@@ -48,7 +48,6 @@ export class AuthService {
       const usuarioDatabase: Prisma.usuarioGetPayload<{
         select: {
           id: true;
-          usuario_tipo: { select: { id: true; nome: true } };
           unidade: { select: { id: true; nome: true; sigla: true } };
           matricula: true;
           cargo: true;
@@ -61,9 +60,10 @@ export class AuthService {
       }> = await this.#database.usuario.findFirstOrThrow({
         select: {
           id: true,
-          usuario_tipo: { select: { id: true, nome: true } },
           unidade: { select: { id: true, nome: true, sigla: true } },
           matricula: true,
+          setor: true,
+          area: true,
           cargo: true,
           nome: true,
           cpf: true,

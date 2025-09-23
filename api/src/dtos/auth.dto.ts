@@ -7,10 +7,11 @@ export class AuthServiceSignInArgs {
 }
 
 export class AuthServiceSignUpData {
-  usuario_tipo_id: number;
   unidade_lotada_id: number;
+  setor_id: number;
+  area_id: number;
+  cargo_id: number;
   nome: string;
-  cargo: string;
   senha: string;
   matricula: string;
   email: string;

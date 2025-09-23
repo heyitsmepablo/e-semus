@@ -56,7 +56,7 @@ export class BoletimSindromeGripalFindAllResponse
       select: {
         id: true;
         unidade: { select: { id: true; nome: true } };
-        usuario: { omit: { usuario_tipo_id: true } };
+        usuario: true;
         referente_ao_dia: true;
         criado_em: true;
         atualizado_em: true;
@@ -71,9 +71,11 @@ export class BoletimSindromeGripalFindAllResponse
     criado_em: Date | null;
     atualizado_em: Date | null;
     nome: string;
-    cargo: string;
     matricula: string;
     unidade_lotada_id: number;
+    setor_id: number;
+    area_id: number;
+    cargo_id: number;
     cpf: string;
     email: string | null;
   } | null;
@@ -85,14 +87,20 @@ export class BoletimSindromeGripalFindOneResponse
   implements
     Prisma.boletim_sindrome_gripalGetPayload<{
       include: {
-        usuario: { select: { nome: true; cargo: true; matricula: true } };
+        usuario: {
+          select: {
+            nome: true;
+            cargo: { select: { nome: true } };
+            matricula: true;
+          };
+        };
         unidade: { select: { nome: true; sigla: true } };
       };
     }>
 {
   id: number;
   unidade: { nome: string; sigla: string | null };
-  usuario: { nome: string; cargo: string; matricula: string } | null;
+  usuario: { nome: string; cargo: { nome: string }; matricula: string } | null;
   unidade_id: number;
   referente_ao_dia: Date;
   usuario_responsavel_preenchimento_id: string | null;

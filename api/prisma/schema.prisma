@@ -103,12 +103,6 @@ model unidade {
   cnpj                                            String?
   email_principal                                 String?
   email_alternativo                               String?
-  numero_leitos_uti                               Int?
-  numero_leitos_uci                               Int?
-  numero_leitos_enfermaria                        Int?
-  numero_leitos_suporte_ventilatorio_pulmonar     Int?
-  numero_leitos_existente_total                   Int?
-  numero_leitos_cnes_total                        Int?
   unidade_tipo_id                                 Int?
   setor                                           String?
   criado_em                                       DateTime?                             @default(now()) @db.Timestamp(6)
@@ -120,6 +114,8 @@ model unidade {
   ficha_spa                                       ficha_spa[]
   ficha_spa_destino_final_do_paciente             ficha_spa_destino_final_do_paciente[]
   unidade_tipo                                    unidade_tipo?                         @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unidade_hospitalar                              unidade_hospitalar?
+  unidade_setor                                   unidade_setor[]
   usuario                                         usuario[]
 }
 
@@ -145,12 +141,13 @@ model acesso {
 model usuario {
   id                          String                        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   nome                        String
-  cargo                       String
   matricula                   String                        @unique
-  unidade_lotada_id           Int
   cpf                         String                        @unique
   email                       String?
-  usuario_tipo_id             Int
+  unidade_lotada_id           Int
+  setor_id                    Int
+  area_id                     Int?
+  cargo_id                    Int
   criado_em                   DateTime?                     @default(now()) @db.Timestamp(6)
   atualizado_em               DateTime?                     @db.Timestamp(6)
   acesso                      acesso?
@@ -159,17 +156,10 @@ model usuario {
   boletim_saida               boletim_saida[]
   boletim_sindrome_gripal     boletim_sindrome_gripal[]
   ficha_spa                   ficha_spa[]
+  area                        area?                         @relation(fields: [area_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cargo                       cargo                         @relation(fields: [cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor                       setor                         @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   unidade                     unidade                       @relation(fields: [unidade_lotada_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  usuario_tipo                usuario_tipo                  @relation(fields: [usuario_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model usuario_tipo {
-  id            Int       @id @default(autoincrement())
-  nome          String?
-  descricao     String?
-  criado_em     DateTime? @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime? @db.Timestamp(6)
-  usuario       usuario[]
 }
 
 model token_de_acesso {
@@ -436,6 +426,94 @@ model regiao {
   criado_em     DateTime? @default(now()) @db.Timestamp(6)
   atualizado_em DateTime? @db.Timestamp(6)
   estado        estado[]
+}
+
+model area {
+  id            Int          @id @default(autoincrement())
+  nome          String
+  setor_id      Int
+  criado_em     DateTime?    @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?    @db.Timestamp(6)
+  setor         setor        @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  area_cargo    area_cargo[]
+  usuario       usuario[]
+}
+
+model area_cargo {
+  id            Int            @id @default(autoincrement())
+  cargo_id      Int
+  area_id       Int
+  criado_em     DateTime?      @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?      @db.Timestamp(6)
+  area          area           @relation(fields: [area_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cargo         cargo          @relation(fields: [cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  controle_rbac controle_rbac?
+}
+
+model cargo {
+  id            Int          @id @default(autoincrement())
+  nome          String?
+  descricao     String?
+  criado_em     DateTime?    @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?    @db.Timestamp(6)
+  area_cargo    area_cargo[]
+  usuario       usuario[]
+}
+
+model controle_rbac {
+  id            Int         @id @default(autoincrement())
+  area_cargo_id Int?        @unique
+  modulo_id     Int?        @unique
+  visualizar    Boolean?
+  criar         Boolean?
+  editar        Boolean?
+  deletar       Boolean?
+  criado_em     DateTime?   @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?   @db.Timestamp(6)
+  area_cargo    area_cargo? @relation(fields: [area_cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  modulo        modulo?     @relation(fields: [modulo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model modulo {
+  id            Int            @id @default(autoincrement())
+  nome          String
+  criado_em     DateTime?      @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?      @db.Timestamp(6)
+  controle_rbac controle_rbac?
+}
+
+model setor {
+  id            Int             @id @default(autoincrement())
+  nome          String
+  unidade_id    Int?
+  criado_em     DateTime?       @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?       @db.Timestamp(6)
+  area          area[]
+  unidade_setor unidade_setor[]
+  usuario       usuario[]
+}
+
+model unidade_hospitalar {
+  unidade_id                                  Int       @id
+  numero_leitos_uti                           Int?
+  numero_leitos_uci                           Int?
+  numero_leitos_enfermaria                    Int?
+  numero_leitos_suporte_ventilatorio_pulmonar Int?
+  numero_leitos_existente_total               Int?
+  numero_leitos_cnes_total                    Int?
+  criado_em                                   DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em                               DateTime? @db.Timestamp(6)
+  unidade                                     unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model unidade_setor {
+  id            Int       @id @default(autoincrement())
+  unidade_id    Int?
+  setor_id      Int?
+  criado_em     DateTime? @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime? @db.Timestamp(6)
+  setor         setor?    @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  unidade       unidade?  @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 enum tipo_admissao {

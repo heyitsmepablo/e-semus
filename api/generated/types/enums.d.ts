@@ -10,7 +10,6 @@ export enum ModelNamesUpper {
   unidade_tipo = "unidade_tipo",
   acesso = "acesso",
   usuario = "usuario",
-  usuario_tipo = "usuario_tipo",
   token_de_acesso = "token_de_acesso",
   boletim_saida = "boletim_saida",
   boletim_saida_item = "boletim_saida_item",
@@ -32,6 +31,14 @@ export enum ModelNamesUpper {
   municipio = "municipio",
   notificacao_agravo = "notificacao_agravo",
   regiao = "regiao",
+  area = "area",
+  area_cargo = "area_cargo",
+  cargo = "cargo",
+  controle_rbac = "controle_rbac",
+  modulo = "modulo",
+  setor = "setor",
+  unidade_hospitalar = "unidade_hospitalar",
+  unidade_setor = "unidade_setor",
 }
 
 export enum ModelNamesLower {
@@ -46,7 +53,6 @@ export enum ModelNamesLower {
   unidade_tipo = "unidade_tipo",
   acesso = "acesso",
   usuario = "usuario",
-  usuario_tipo = "usuario_tipo",
   token_de_acesso = "token_de_acesso",
   boletim_saida = "boletim_saida",
   boletim_saida_item = "boletim_saida_item",
@@ -68,6 +74,14 @@ export enum ModelNamesLower {
   municipio = "municipio",
   notificacao_agravo = "notificacao_agravo",
   regiao = "regiao",
+  area = "area",
+  area_cargo = "area_cargo",
+  cargo = "cargo",
+  controle_rbac = "controle_rbac",
+  modulo = "modulo",
+  setor = "setor",
+  unidade_hospitalar = "unidade_hospitalar",
+  unidade_setor = "unidade_setor",
 }
 
 export type TModelNames =
@@ -82,7 +96,6 @@ export type TModelNames =
   | "unidade_tipo"
   | "acesso"
   | "usuario"
-  | "usuario_tipo"
   | "token_de_acesso"
   | "boletim_saida"
   | "boletim_saida_item"
@@ -103,4 +116,12 @@ export type TModelNames =
   | "ficha_spa_recepcao"
   | "municipio"
   | "notificacao_agravo"
-  | "regiao";
+  | "regiao"
+  | "area"
+  | "area_cargo"
+  | "cargo"
+  | "controle_rbac"
+  | "modulo"
+  | "setor"
+  | "unidade_hospitalar"
+  | "unidade_setor";

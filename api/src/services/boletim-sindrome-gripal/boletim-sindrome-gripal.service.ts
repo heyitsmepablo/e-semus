@@ -22,7 +22,7 @@ export class BoletimSindromeGripalService {
         select: {
           id: true,
           unidade: { select: { id: true, nome: true } },
-          usuario: { omit: { usuario_tipo_id: true } },
+          usuario: true,
           referente_ao_dia: true,
           criado_em: true,
           atualizado_em: true,
