@@ -73,9 +73,7 @@ export class BoletimSindromeGripalFindAllResponse
     nome: string;
     matricula: string;
     unidade_lotada_id: number;
-    setor_id: number;
-    area_id: number;
-    cargo_id: number;
+    setor_area_cargo_id: number;
     cpf: string;
     email: string | null;
   } | null;
@@ -90,7 +88,13 @@ export class BoletimSindromeGripalFindOneResponse
         usuario: {
           select: {
             nome: true;
-            cargo: { select: { nome: true } };
+            setor_area_cargo: {
+              select: {
+                setor: { select: { nome: true } };
+                area: { select: { nome: true } };
+                cargo: { select: { nome: true } };
+              };
+            };
             matricula: true;
           };
         };
@@ -100,7 +104,15 @@ export class BoletimSindromeGripalFindOneResponse
 {
   id: number;
   unidade: { nome: string; sigla: string | null };
-  usuario: { nome: string; cargo: { nome: string }; matricula: string } | null;
+  usuario: {
+    nome: string;
+    setor_area_cargo: {
+      setor: { nome: string };
+      area: { nome: string };
+      cargo: { nome: string };
+    };
+    matricula: string;
+  } | null;
   unidade_id: number;
   referente_ao_dia: Date;
   usuario_responsavel_preenchimento_id: string | null;

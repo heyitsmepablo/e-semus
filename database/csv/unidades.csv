@@ -1,20 +1,20 @@
-nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id,setor
-"HOSPITAL MUNICIPAL DJALMA MARQUES - SOCORRÃO I",SC1,"Rua do Passeio, s/n – Centro",2308762,"07.008.865/0001-43","gabinetehmdm@hotmail.com",,18,14,172,12,129,1,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"HOSPITAL MUNICIPAL DR. CLEMENTINO MOURA SOCORRÃO II",SC2,"Rua Tancredo Neves, s/n – Santa Efigênia",2308800,"02.930.277/0001-49","socorrao2@gmail.com","naqhsoc2@gmail.com",28,0,250,10,277,1,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"HOSPITAL MUNICIPAL DR. ODORICO AMARAL DE MATTOS - NOVO HOSPITAL DA CRIANÇA",HC,"Avenida dos Franceses, s/n – Alemanha",2458799,"05.760.293/0008-03","hospitaldacriancasemus@gmail.com",,29,0,118,6,140,1,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"HOSPITAL DA MULHER",HM,"Av. dos portugueses, s/n – Anjo da Guarda",5446546,"05.760.293/0013-62","direcaohospitaldamulher20211@outlook.com",,10,0,42,0,63,1,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"HOSPITAL ZONA RURAL",HZR,"BR – 135 km 7 – S/N – Maracanã",9144706,,"upazonarural@hotmail.com",,0,0,20,0,20,1,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"UNIDADE MISTA DO ITAQUIBACANGA",UMIB,"Av. dos Portugueses, nº10 – Vila Izabel",2456915,"05.760.293/0006-33","umibcontrole@gmail.com",,0,0,29,0,28,2,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"UNIDADE MISTA DO SÃO BERNARDO",UMSB,"Av. Tiradentes, s/n – São Bernardo",2456907,"05.760.293/0005-52","umsaobernardo@gmail.com",,0,0,34,0,34,2,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"UNIDADE MISTA DO COROADINHO",UMC,"Rua da Vitória, nº01 – Coroadinho",2455773,"05.760.293/0004-71","umcoroadinho@gmail.com",,0,0,16,0,26,2,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"UNIDADE MISTA DO BEQUIMÃO",UMB,"Avenida do Contorno, s/n – Bequimão",2464276,"05.760.293/0007-14","umbequimao@gmail.com",,0,0,43,0,40,2,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"PRONTO SOCORRO DO ANIL",PSA,"Av. Casemiro Junior, s/n – Anil",2457784,,"prontosocorroanil@gmail.com",,0,0,0,0,0,3,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"PRONTO SOCORRO DO SÂO FRANCISCO",PSF,"Rua Hemetério Leitão, s/n – São Francisco",6165397,,"socorrinhosaofrancisco@hotmail.com",,0,0,0,0,0,3,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"SERVIÇO DE ATENDIMENTO MÓVEL DE URGÊNCIA SAMU 192",SAMU,"Av. JOÃO PESSOA nº. 402 – SÍTIO LEAL – FILIPINHO",,,,0,0,0,0,0,4,5,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"CENTRAL INTERNA DE AMBULÂNCIA",CIA,"Av.JOÃO PESSOA nº. 402 – SÍTIO LEAL – FILIPINHO",,,,0,0,0,0,0,0,5,"REDE DE ATENÇÃO ÀS URGÊNCIAS E EMERGÊNCIAS"
-"SANTA CASA DE MISERICORDIA DO MARANHÃO - VASCULAR",SCMV,"RUA DO NORTE Nº33 CENTRO",2456958,,"",,0,0,22,0,22,11,"REDE DE ATENÇÃO À SAÚDE MATERNA E INFANTIL"
-"SANTA CASA DE MISERICORDIA DO MARANHÃO - MATERNIDADE",SCM,"RUA DO NORTE Nº33 CENTRO",2456958,,"",,0,0,22,0,22,11,"REDE DE ATENÇÃO À SAÚDE MATERNA E INFANTIL"
-"CENTRO DE PARTO HUMANIZADO NAZIRA ASSUB",CPHNA,"Av. Engenheiro Emiliano Macieira, Km 23 - Estiva",4007905,,"naziraassubslz@gmail.com",,0,0,22,0,22,10,"REDE DE ATENÇÃO À SAÚDE MATERNA E INFANTIL"
-"UNIDADE FEDERAL",,"",0,,"",,0,0,0,0,0,12,"OUTROS"
-"UNIDADE ESTADUAL",,"",0,,"",,0,0,0,0,0,12,"OUTROS"
-"SECRETARIA MUNICIPAL DE SAUDE",SEMUS,"Rua Deputado Raimundo Vieira da Silva, N° 2000, CEP:, 65.025 - Centro, São Luís - MA",0,,"",,0,0,0,0,0,13,"OUTROS"
+nome,sigla,endereco,cnes,cnpj,email_principal,email_alternativo,numero_leitos_uti,numero_leitos_uci,numero_leitos_enfermaria,numero_leitos_suporte_ventilatorio_pulmonar,numero_leitos_cnes_total,tipo_unidade_id
+"HOSPITAL MUNICIPAL DJALMA MARQUES - SOCORRÃO I",SC1,"Rua do Passeio, s/n – Centro",2308762,"07.008.865/0001-43","gabinetehmdm@hotmail.com",,18,14,172,12,129,1
+"HOSPITAL MUNICIPAL DR. CLEMENTINO MOURA SOCORRÃO II",SC2,"Rua Tancredo Neves, s/n – Santa Efigênia",2308800,"02.930.277/0001-49","socorrao2@gmail.com","naqhsoc2@gmail.com",28,0,250,10,277,1
+"HOSPITAL MUNICIPAL DR. ODORICO AMARAL DE MATTOS - NOVO HOSPITAL DA CRIANÇA",HC,"Avenida dos Franceses, s/n – Alemanha",2458799,"05.760.293/0008-03","hospitaldacriancasemus@gmail.com",,29,0,118,6,140,1
+"HOSPITAL DA MULHER",HM,"Av. dos portugueses, s/n – Anjo da Guarda",5446546,"05.760.293/0013-62","direcaohospitaldamulher20211@outlook.com",,10,0,42,0,63,1
+"HOSPITAL ZONA RURAL",HZR,"BR – 135 km 7 – S/N – Maracanã",9144706,,"upazonarural@hotmail.com",,0,0,20,0,20,1
+"UNIDADE MISTA DO ITAQUIBACANGA",UMIB,"Av. dos Portugueses, nº10 – Vila Izabel",2456915,"05.760.293/0006-33","umibcontrole@gmail.com",,0,0,29,0,28,2
+"UNIDADE MISTA DO SÃO BERNARDO",UMSB,"Av. Tiradentes, s/n – São Bernardo",2456907,"05.760.293/0005-52","umsaobernardo@gmail.com",,0,0,34,0,34,2
+"UNIDADE MISTA DO COROADINHO",UMC,"Rua da Vitória, nº01 – Coroadinho",2455773,"05.760.293/0004-71","umcoroadinho@gmail.com",,0,0,16,0,26,2
+"UNIDADE MISTA DO BEQUIMÃO",UMB,"Avenida do Contorno, s/n – Bequimão",2464276,"05.760.293/0007-14","umbequimao@gmail.com",,0,0,43,0,40,2
+"PRONTO SOCORRO DO ANIL",PSA,"Av. Casemiro Junior, s/n – Anil",2457784,,"prontosocorroanil@gmail.com",,0,0,0,0,0,3
+"PRONTO SOCORRO DO SÂO FRANCISCO",PSF,"Rua Hemetério Leitão, s/n – São Francisco",6165397,,"socorrinhosaofrancisco@hotmail.com",,0,0,0,0,0,3
+"SERVIÇO DE ATENDIMENTO MÓVEL DE URGÊNCIA SAMU 192",SAMU,"Av. JOÃO PESSOA nº. 402 – SÍTIO LEAL – FILIPINHO",,,,0,0,0,0,0,4,5
+"CENTRAL INTERNA DE AMBULÂNCIA",CIA,"Av.JOÃO PESSOA nº. 402 – SÍTIO LEAL – FILIPINHO",,,,0,0,0,0,0,0,5
+"SANTA CASA DE MISERICORDIA DO MARANHÃO - VASCULAR",SCMV,"RUA DO NORTE Nº33 CENTRO",2456958,,"",,0,0,22,0,22,11
+"SANTA CASA DE MISERICORDIA DO MARANHÃO - MATERNIDADE",SCM,"RUA DO NORTE Nº33 CENTRO",2456958,,"",,0,0,22,0,22,11
+"CENTRO DE PARTO HUMANIZADO NAZIRA ASSUB",CPHNA,"Av. Engenheiro Emiliano Macieira, Km 23 - Estiva",4007905,,"naziraassubslz@gmail.com",,0,0,22,0,22,10
+"UNIDADE FEDERAL",,"",0,,"",,0,0,0,0,0,12
+"UNIDADE ESTADUAL",,"",0,,"",,0,0,0,0,0,12
+"SECRETARIA MUNICIPAL DE SAUDE",SEMUS,"Rua Deputado Raimundo Vieira da Silva, N° 2000, CEP:, 65.025 - Centro, São Luís - MA",0,,"",,0,0,0,0,0,13

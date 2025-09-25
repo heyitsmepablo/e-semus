@@ -35,6 +35,7 @@ import { BoletimSindromeGripalService } from './services/boletim-sindrome-gripal
 import { BoletimSindromeGripalController } from './controllers/boletim-sindrome-gripal/boletim-sindrome-gripal.controller';
 import { FichaSpaService } from './services/ficha-spa/ficha-spa.service';
 import { FichaSpaController } from './controllers/ficha-spa/ficha-spa.controller';
+import { RbacService } from './services/rbac/rbac.service';
 
 @Module({
   imports: [
@@ -90,6 +91,7 @@ import { FichaSpaController } from './controllers/ficha-spa/ficha-spa.controller
     BoletimSaidaService,
     BoletimSindromeGripalService,
     FichaSpaService,
+    RbacService,
   ],
 })
 export class AppModule {}

@@ -135,7 +135,6 @@ CREATE TABLE "unidade" (
   "email_principal" TEXT,
   "email_alternativo" TEXT,
   "unidade_tipo_id" INT,
-  "setor" TEXT,
   "criado_em" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP),
   "atualizado_em" TIMESTAMP
 );
@@ -413,10 +412,7 @@ CREATE TABLE "usuario" (
   "matricula" TEXT UNIQUE NOT NULL,
   "cpf" TEXT UNIQUE NOT NULL,
   "email" TEXT,
-  "unidade_lotada_id" INT NOT NULL,
-  "setor_id" INT NOT NULL,
-  "area_id" INT,
-  "cargo_id" INT NOT NULL,
+  "setor_area_cargo_id" INT NOT NULL,
   "criado_em" TIMESTAMP DEFAULT (CURRENT_TIMESTAMP),
   "atualizado_em" TIMESTAMP
 );
@@ -500,10 +496,6 @@ CREATE UNIQUE INDEX ON "controle_rbac" ("setor_area_cargo_id", "modulo_id");
 
 ALTER TABLE "unidade_hospitalar" ADD FOREIGN KEY ("unidade_id") REFERENCES "unidade" ("id");
 
-ALTER TABLE "usuario" ADD FOREIGN KEY ("setor_id") REFERENCES "setor" ("id");
-
-ALTER TABLE "usuario" ADD FOREIGN KEY ("area_id") REFERENCES "area" ("id");
-
 ALTER TABLE "setor" ADD FOREIGN KEY ("unidade_id") REFERENCES "unidade" ("id");
 
 ALTER TABLE "controle_rbac" ADD FOREIGN KEY ("setor_area_cargo_id") REFERENCES "setor_area_cargo" ("id");
@@ -580,8 +572,6 @@ ALTER TABLE "cid_categoria" ADD FOREIGN KEY ("cid_grupo_id") REFERENCES "cid_gru
 
 ALTER TABLE "unidade" ADD FOREIGN KEY ("unidade_tipo_id") REFERENCES "unidade_tipo" ("id");
 
-ALTER TABLE "usuario" ADD FOREIGN KEY ("cargo_id") REFERENCES "cargo" ("id");
-
 ALTER TABLE "acesso" ADD FOREIGN KEY ("usuario_id") REFERENCES "usuario" ("id") ON DELETE CASCADE;
 
 ALTER TABLE "token_de_acesso" ADD FOREIGN KEY ("acesso_id") REFERENCES "acesso" ("id") ON DELETE CASCADE;
@@ -596,4 +586,4 @@ ALTER TABLE "boletim_internacao_ocupacao" ADD FOREIGN KEY ("usuario_responsavel_
 
 ALTER TABLE "boletim_saida_item" ADD FOREIGN KEY ("boletim_saida_id") REFERENCES "boletim_saida" ("id") ON DELETE CASCADE;
 
-ALTER TABLE "usuario" ADD FOREIGN KEY ("unidade_lotada_id") REFERENCES "unidade" ("id");
+ALTER TABLE "usuario" ADD FOREIGN KEY ("setor_area_cargo_id") REFERENCES "setor_area_cargo" ("id");

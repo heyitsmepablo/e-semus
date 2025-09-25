@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse } from '@nestjs/swagger';
 import { usuario } from 'generated/prisma';
+import { Acao, Modulo } from 'src/decorators/permission.decorator';
 import { Usuario } from 'src/decorators/usuario/usuario.decorator';
 import {
   BoletimSindromeGripalCreateDto,
@@ -17,6 +18,7 @@ import {
 } from 'src/dtos/boletim-sindrome-gripal.dto';
 import { UsuarioDecoratorPayload } from 'src/dtos/usuario.dto';
 import { AuthGuard } from 'src/guards/auth/auth.guard';
+import { AuthzGuard } from 'src/guards/authz/authz.guard';
 import { BoletimSindromeGripalService } from 'src/services/boletim-sindrome-gripal/boletim-sindrome-gripal.service';
 @ApiBearerAuth()
 @UseGuards(AuthGuard)
@@ -25,6 +27,7 @@ export class BoletimSindromeGripalController {
   constructor(
     private readonly boletimSindromeGripalService: BoletimSindromeGripalService,
   ) {}
+
   @Get()
   @ApiOkResponse({ type: [BoletimSindromeGripalFindAllResponse] })
   async findAll(@Usuario() usuario: UsuarioDecoratorPayload) {
@@ -32,6 +35,7 @@ export class BoletimSindromeGripalController {
       where: { unidade_id: usuario.unidade.id },
     });
   }
+
   @Post()
   async create(
     @Body() data: BoletimSindromeGripalCreateDto,

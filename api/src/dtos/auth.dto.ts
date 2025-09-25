@@ -7,10 +7,7 @@ export class AuthServiceSignInArgs {
 }
 
 export class AuthServiceSignUpData {
-  unidade_lotada_id: number;
-  setor_id: number;
-  area_id: number;
-  cargo_id: number;
+  setor_area_cargo_id: number;
   nome: string;
   senha: string;
   matricula: string;
@@ -20,13 +17,9 @@ export class AuthServiceSignUpData {
 
 export class AuthSignUpDto {
   @IsInt()
-  usuario_tipo_id: number;
-  @IsInt()
-  unidade_lotada_id: number;
+  setor_area_cargo_id: number;
   @IsString()
   nome: string;
-  @IsString()
-  cargo: string;
   @IsString()
   senha: string;
   @IsString()

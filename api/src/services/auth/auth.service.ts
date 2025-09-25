@@ -35,7 +35,6 @@ export class AuthService {
     await this.#database.usuario.create({
       data: { ...usuario, acesso: { create: { senha: senhaCriptografada } } },
     });
-
     return { message: 'success' };
   }
 
@@ -48,9 +47,19 @@ export class AuthService {
       const usuarioDatabase: Prisma.usuarioGetPayload<{
         select: {
           id: true;
-          unidade: { select: { id: true; nome: true; sigla: true } };
           matricula: true;
-          cargo: true;
+          setor_area_cargo: {
+            select: {
+              setor: {
+                select: {
+                  nome: true;
+                  unidade: { select: { id: true; nome: true; sigla: true } };
+                };
+              };
+              area: { select: { nome: true } };
+              cargo: { select: { nome: true } };
+            };
+          };
           nome: true;
           cpf: true;
           email: true;
@@ -60,11 +69,19 @@ export class AuthService {
       }> = await this.#database.usuario.findFirstOrThrow({
         select: {
           id: true,
-          unidade: { select: { id: true, nome: true, sigla: true } },
           matricula: true,
-          setor: true,
-          area: true,
-          cargo: true,
+          setor_area_cargo: {
+            select: {
+              setor: {
+                select: {
+                  nome: true,
+                  unidade: { select: { id: true, nome: true, sigla: true } },
+                },
+              },
+              area: { select: { nome: true } },
+              cargo: { select: { nome: true } },
+            },
+          },
           nome: true,
           cpf: true,
           email: true,

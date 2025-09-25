@@ -104,7 +104,6 @@ model unidade {
   email_principal                                 String?
   email_alternativo                               String?
   unidade_tipo_id                                 Int?
-  setor                                           String?
   criado_em                                       DateTime?                             @default(now()) @db.Timestamp(6)
   atualizado_em                                   DateTime?                             @db.Timestamp(6)
   boletim_internacao_admissao                     boletim_internacao_admissao[]
@@ -113,10 +112,9 @@ model unidade {
   boletim_sindrome_gripal                         boletim_sindrome_gripal[]
   ficha_spa                                       ficha_spa[]
   ficha_spa_destino_final_do_paciente             ficha_spa_destino_final_do_paciente[]
+  setor                                           setor[]
   unidade_tipo                                    unidade_tipo?                         @relation(fields: [unidade_tipo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   unidade_hospitalar                              unidade_hospitalar?
-  unidade_setor                                   unidade_setor[]
-  usuario                                         usuario[]
 }
 
 model unidade_tipo {
@@ -144,10 +142,7 @@ model usuario {
   matricula                   String                        @unique
   cpf                         String                        @unique
   email                       String?
-  unidade_lotada_id           Int
-  setor_id                    Int
-  area_id                     Int?
-  cargo_id                    Int
+  setor_area_cargo_id         Int
   criado_em                   DateTime?                     @default(now()) @db.Timestamp(6)
   atualizado_em               DateTime?                     @db.Timestamp(6)
   acesso                      acesso?
@@ -156,10 +151,7 @@ model usuario {
   boletim_saida               boletim_saida[]
   boletim_sindrome_gripal     boletim_sindrome_gripal[]
   ficha_spa                   ficha_spa[]
-  area                        area?                         @relation(fields: [area_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  cargo                       cargo                         @relation(fields: [cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  setor                       setor                         @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  unidade                     unidade                       @relation(fields: [unidade_lotada_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor_area_cargo            setor_area_cargo              @relation(fields: [setor_area_cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model token_de_acesso {
@@ -429,68 +421,57 @@ model regiao {
 }
 
 model area {
-  id            Int          @id @default(autoincrement())
-  nome          String
-  setor_id      Int
-  criado_em     DateTime?    @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?    @db.Timestamp(6)
-  setor         setor        @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  area_cargo    area_cargo[]
-  usuario       usuario[]
-}
-
-model area_cargo {
-  id            Int            @id @default(autoincrement())
-  cargo_id      Int
-  area_id       Int
-  criado_em     DateTime?      @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?      @db.Timestamp(6)
-  area          area           @relation(fields: [area_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  cargo         cargo          @relation(fields: [cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  controle_rbac controle_rbac?
+  id               Int                @id @default(autoincrement())
+  nome             String
+  setor_id         Int
+  criado_em        DateTime?          @default(now()) @db.Timestamp(6)
+  atualizado_em    DateTime?          @db.Timestamp(6)
+  setor            setor              @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor_area_cargo setor_area_cargo[]
 }
 
 model cargo {
-  id            Int          @id @default(autoincrement())
-  nome          String?
-  descricao     String?
-  criado_em     DateTime?    @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?    @db.Timestamp(6)
-  area_cargo    area_cargo[]
-  usuario       usuario[]
+  id               Int                @id @default(autoincrement())
+  nome             String?
+  descricao        String?
+  criado_em        DateTime?          @default(now()) @db.Timestamp(6)
+  atualizado_em    DateTime?          @db.Timestamp(6)
+  setor_area_cargo setor_area_cargo[]
 }
 
 model controle_rbac {
-  id            Int         @id @default(autoincrement())
-  area_cargo_id Int?        @unique
-  modulo_id     Int?        @unique
-  visualizar    Boolean?
-  criar         Boolean?
-  editar        Boolean?
-  deletar       Boolean?
-  criado_em     DateTime?   @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?   @db.Timestamp(6)
-  area_cargo    area_cargo? @relation(fields: [area_cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  modulo        modulo?     @relation(fields: [modulo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id                  Int               @id @default(autoincrement())
+  setor_area_cargo_id Int?
+  modulo_id           Int?
+  visualizar          Boolean?
+  criar               Boolean?
+  editar              Boolean?
+  deletar             Boolean?
+  criado_em           DateTime?         @default(now()) @db.Timestamp(6)
+  atualizado_em       DateTime?         @db.Timestamp(6)
+  modulo              modulo?           @relation(fields: [modulo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor_area_cargo    setor_area_cargo? @relation(fields: [setor_area_cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@unique([setor_area_cargo_id, modulo_id], map: "controle_rbac_setor_area_cargo_id_modulo_id_idx")
 }
 
 model modulo {
-  id            Int            @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   nome          String
-  criado_em     DateTime?      @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?      @db.Timestamp(6)
-  controle_rbac controle_rbac?
+  criado_em     DateTime?       @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?       @db.Timestamp(6)
+  controle_rbac controle_rbac[]
 }
 
 model setor {
-  id            Int             @id @default(autoincrement())
-  nome          String
-  unidade_id    Int?
-  criado_em     DateTime?       @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime?       @db.Timestamp(6)
-  area          area[]
-  unidade_setor unidade_setor[]
-  usuario       usuario[]
+  id               Int                @id @default(autoincrement())
+  nome             String
+  unidade_id       Int
+  criado_em        DateTime?          @default(now()) @db.Timestamp(6)
+  atualizado_em    DateTime?          @db.Timestamp(6)
+  area             area[]
+  unidade          unidade            @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor_area_cargo setor_area_cargo[]
 }
 
 model unidade_hospitalar {
@@ -506,14 +487,18 @@ model unidade_hospitalar {
   unidade                                     unidade   @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
-model unidade_setor {
-  id            Int       @id @default(autoincrement())
-  unidade_id    Int?
-  setor_id      Int?
-  criado_em     DateTime? @default(now()) @db.Timestamp(6)
-  atualizado_em DateTime? @db.Timestamp(6)
-  setor         setor?    @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  unidade       unidade?  @relation(fields: [unidade_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+model setor_area_cargo {
+  id            Int             @id @default(autoincrement())
+  setor_id      Int
+  cargo_id      Int
+  area_id       Int?
+  criado_em     DateTime?       @default(now()) @db.Timestamp(6)
+  atualizado_em DateTime?       @db.Timestamp(6)
+  controle_rbac controle_rbac[]
+  area          area?           @relation(fields: [area_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  cargo         cargo           @relation(fields: [cargo_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  setor         setor           @relation(fields: [setor_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  usuario       usuario[]
 }
 
 enum tipo_admissao {

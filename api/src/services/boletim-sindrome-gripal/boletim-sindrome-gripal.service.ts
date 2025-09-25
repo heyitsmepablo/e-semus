@@ -38,7 +38,15 @@ export class BoletimSindromeGripalService {
       return await this.#db.boletim_sindrome_gripal.findUnique({
         where: options.where,
         include: {
-          usuario: { select: { nome: true, cargo: true, matricula: true } },
+          usuario: {
+            select: {
+              nome: true,
+              setor_area_cargo: {
+                select: { cargo: { select: { nome: true } } },
+              },
+              matricula: true,
+            },
+          },
           unidade: { select: { nome: true, sigla: true } },
         },
       });

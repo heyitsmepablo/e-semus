@@ -32,13 +32,12 @@ export enum ModelNamesUpper {
   notificacao_agravo = "notificacao_agravo",
   regiao = "regiao",
   area = "area",
-  area_cargo = "area_cargo",
   cargo = "cargo",
   controle_rbac = "controle_rbac",
   modulo = "modulo",
   setor = "setor",
   unidade_hospitalar = "unidade_hospitalar",
-  unidade_setor = "unidade_setor",
+  setor_area_cargo = "setor_area_cargo",
 }
 
 export enum ModelNamesLower {
@@ -75,13 +74,12 @@ export enum ModelNamesLower {
   notificacao_agravo = "notificacao_agravo",
   regiao = "regiao",
   area = "area",
-  area_cargo = "area_cargo",
   cargo = "cargo",
   controle_rbac = "controle_rbac",
   modulo = "modulo",
   setor = "setor",
   unidade_hospitalar = "unidade_hospitalar",
-  unidade_setor = "unidade_setor",
+  setor_area_cargo = "setor_area_cargo",
 }
 
 export type TModelNames =
@@ -118,10 +116,9 @@ export type TModelNames =
   | "notificacao_agravo"
   | "regiao"
   | "area"
-  | "area_cargo"
   | "cargo"
   | "controle_rbac"
   | "modulo"
   | "setor"
   | "unidade_hospitalar"
-  | "unidade_setor";
+  | "setor_area_cargo";

@@ -37,8 +37,7 @@ CREATE FOREIGN TABLE unidades_csv (
   "numero_leitos_enfermaria" INT,
   "numero_leitos_suporte_ventilatorio_pulmonar" INT,
   "numero_leitos_cnes_total" INT,
-  "unidade_tipo_id" INT,
-  "setor" TEXT
+  "unidade_tipo_id" INT
 )
 SERVER file_server
 OPTIONS (
@@ -58,8 +57,7 @@ INSERT INTO unidade (
     cnpj,
     email_principal,
     email_alternativo,
-    unidade_tipo_id,
-    setor
+    unidade_tipo_id
 )
 SELECT
     nome,
@@ -69,8 +67,7 @@ SELECT
     cnpj,
     email_principal,
     email_alternativo,
-    unidade_tipo_id,
-    setor
+    unidade_tipo_id
 FROM unidades_csv;
 
 -- 2️⃣ Inserir na unidade_hospitalar apenas onde unidade_tipo_id <> 13
